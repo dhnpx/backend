@@ -11,7 +11,7 @@ let data = {
 for (let i = 1; i < 50; i++) {
     let account = {
         id: faker.string.uuid(),
-        userName: faker.internet.userName(),
+        username: faker.internet.userName(),
         password: faker.internet.password(),
     };
 
