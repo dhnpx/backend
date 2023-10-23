@@ -1,4 +1,4 @@
-const { accounts, accountInfo, canrdInfo, products } = require('./data.json');
+const { accounts, accountInfo, cardInfo, products } = require('./data.json');
 
 module.exports = {
     login: (req) => {
@@ -13,7 +13,50 @@ module.exports = {
         return false;
     },
 
+    postAccount: (req) => {
+        let account = {
+            id: accounts[accounts.length - 1].id + 1,
+            username: req.body.username,
+            password: req.body.password,
+        };
+        accounts.push(account);
+    },
+
+
     getAllAccounts: () => {
         return accounts;
+    },
+
+    getAccountInfo: (id) => {
+        for (info of accountInfo) {
+            if (info.accountId == id) {
+                return info;
+            }
+        }
+        return null;
+    },
+
+    getAllAccountInfo: () => {
+        return accountInfo;
+    },
+
+    getCardInfo: (accountId) => {
+        if (accountId == undefined) {
+            return cardInfo;
+        }
+        for (card of cardInfo) {
+            if (card.accoundId == accountId) {
+                return card;
+            }
+        }
+        return null;
+    },
+
+    getAllCardInfo: () => {
+        return cardInfo;
+    },
+    
+    getAllProducts: () => {
+        return products;
     },
 }
